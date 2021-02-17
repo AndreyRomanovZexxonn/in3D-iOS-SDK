@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="258" id="yLI-tQ-qeV" customClass="TextViewCell" customModule="in3D" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="258"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="yLI-tQ-qeV" id="UUf-PY-v0r">
+                <rect key="frame" x="0.0" y="0.0" width="414" height="258"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HUg-UZ-TWm">
+                        <rect key="frame" x="25" y="23.5" width="364" height="110"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Bux-xu-7MD">
+                                <rect key="frame" x="15" y="5" width="334" height="100"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="Bux-xu-7MD" secondAttribute="trailing" constant="15" id="46t-kB-IVP"/>
+                            <constraint firstItem="Bux-xu-7MD" firstAttribute="top" secondItem="HUg-UZ-TWm" secondAttribute="top" constant="5" id="GmP-OR-qHl"/>
+                            <constraint firstAttribute="height" constant="110" id="HwH-RH-1iJ"/>
+                            <constraint firstAttribute="bottom" secondItem="Bux-xu-7MD" secondAttribute="bottom" constant="5" id="R3Q-aL-rlm"/>
+                            <constraint firstItem="Bux-xu-7MD" firstAttribute="leading" secondItem="HUg-UZ-TWm" secondAttribute="leading" constant="15" id="tlF-j8-VPF"/>
+                        </constraints>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password must contain 1 uppercase, 1 lowercase letter and number" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gVA-Yj-QQk">
+                        <rect key="frame" x="25" y="0.0" width="364" height="13.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="HUg-UZ-TWm" firstAttribute="leading" secondItem="UUf-PY-v0r" secondAttribute="leading" constant="25" id="MHJ-2U-Pmw"/>
+                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="HUg-UZ-TWm" secondAttribute="bottom" constant="10" id="SWb-KD-kHr"/>
+                    <constraint firstAttribute="trailing" secondItem="gVA-Yj-QQk" secondAttribute="trailing" constant="25" id="UXk-vf-NiZ"/>
+                    <constraint firstItem="gVA-Yj-QQk" firstAttribute="top" secondItem="UUf-PY-v0r" secondAttribute="top" id="ViL-FB-Xbp"/>
+                    <constraint firstItem="HUg-UZ-TWm" firstAttribute="top" secondItem="gVA-Yj-QQk" secondAttribute="bottom" constant="10" id="X4a-ma-ikX"/>
+                    <constraint firstItem="gVA-Yj-QQk" firstAttribute="leading" secondItem="UUf-PY-v0r" secondAttribute="leading" constant="25" id="aZU-XM-Drq"/>
+                    <constraint firstAttribute="trailing" secondItem="HUg-UZ-TWm" secondAttribute="trailing" constant="25" id="lG1-ze-6L2"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="textView" destination="Bux-xu-7MD" id="Pod-jk-ot2"/>
+                <outlet property="textViewContainer" destination="HUg-UZ-TWm" id="ugw-fQ-o0u"/>
+                <outlet property="titleLabel" destination="gVA-Yj-QQk" id="HO2-Tt-WCf"/>
+            </connections>
+            <point key="canvasLocation" x="11.594202898550726" y="119.19642857142857"/>
+        </tableViewCell>
+    </objects>
+</document>

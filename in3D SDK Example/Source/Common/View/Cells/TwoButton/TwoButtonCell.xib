@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TwoButtonCell" rowHeight="114" id="pv4-za-dW8" customClass="TwoButtonCell" customModule="in3d" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="114"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="pv4-za-dW8" id="eXN-sT-Mh5">
+                <rect key="frame" x="0.0" y="0.0" width="414" height="114"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pfQ-sY-2Ay">
+                        <rect key="frame" x="25" y="0.0" width="169.5" height="42"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="42" id="CbM-xs-Loj"/>
+                        </constraints>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xqy-Pq-F0r">
+                        <rect key="frame" x="219.5" y="0.0" width="169.5" height="42"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="42" id="wXg-Kn-iJ5"/>
+                        </constraints>
+                    </button>
+                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="9Q8-KE-oQI">
+                        <rect key="frame" x="100" y="11" width="20" height="20"/>
+                        <color key="color" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </activityIndicatorView>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="Xqy-Pq-F0r" secondAttribute="trailing" constant="25" id="8ZN-Qb-Ak4"/>
+                    <constraint firstItem="Xqy-Pq-F0r" firstAttribute="width" secondItem="pfQ-sY-2Ay" secondAttribute="width" id="GNZ-JJ-zMs"/>
+                    <constraint firstItem="pfQ-sY-2Ay" firstAttribute="leading" secondItem="eXN-sT-Mh5" secondAttribute="leading" constant="25" id="Gyj-f9-ywu"/>
+                    <constraint firstItem="9Q8-KE-oQI" firstAttribute="centerX" secondItem="pfQ-sY-2Ay" secondAttribute="centerX" id="OmX-uC-ez0"/>
+                    <constraint firstItem="9Q8-KE-oQI" firstAttribute="centerY" secondItem="pfQ-sY-2Ay" secondAttribute="centerY" id="cRU-0W-PHR"/>
+                    <constraint firstItem="Xqy-Pq-F0r" firstAttribute="leading" secondItem="pfQ-sY-2Ay" secondAttribute="trailing" constant="25" id="eGE-HV-APl"/>
+                    <constraint firstItem="Xqy-Pq-F0r" firstAttribute="top" secondItem="eXN-sT-Mh5" secondAttribute="top" id="fYq-dr-Noi"/>
+                    <constraint firstItem="Xqy-Pq-F0r" firstAttribute="bottom" secondItem="pfQ-sY-2Ay" secondAttribute="bottom" id="haS-MF-xxU"/>
+                    <constraint firstItem="Xqy-Pq-F0r" firstAttribute="top" secondItem="pfQ-sY-2Ay" secondAttribute="top" id="sDT-kW-DKv"/>
+                    <constraint firstAttribute="bottom" secondItem="Xqy-Pq-F0r" secondAttribute="bottom" constant="10" id="ssO-fS-mZu"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="activityIndicator" destination="9Q8-KE-oQI" id="8pi-UK-lJH"/>
+                <outlet property="leftButton" destination="pfQ-sY-2Ay" id="gth-a1-syd"/>
+                <outlet property="rightButton" destination="Xqy-Pq-F0r" id="dU3-EJ-Yhg"/>
+            </connections>
+            <point key="canvasLocation" x="140.57971014492756" y="83.035714285714278"/>
+        </tableViewCell>
+    </objects>
+</document>

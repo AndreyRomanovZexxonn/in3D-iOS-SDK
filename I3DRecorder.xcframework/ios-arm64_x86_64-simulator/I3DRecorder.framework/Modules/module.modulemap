@@ -1,0 +1,11 @@
+framework module I3DRecorder {
+  umbrella header "I3DRecorder.h"
+
+  export *
+  module * { export * }
+}
+
+module I3DRecorder.Swift {
+    header "I3DRecorder-Swift.h"
+    requires objc
+}
