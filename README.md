@@ -2,7 +2,11 @@
 
 ## Introduction
 
-in3D iOS SDK helps you to record data for 3D body model creation. SDK makes it easy to create your own recording screens.
+in3D iOS SDK can be used to enable 3D human scanning capabilities into iOS apps. It provides simple methods to capture data from the camera and communicate with in3D cloud. You can easily customize UI enabling seamless integration into existing user experience.
+
+## Important
+
+The quality of the resulting scan heavily depends on whether the user follows the recommended way of usage or not. You may refer to [in3D app](https://apps.apple.com/us/app/in3d-3d-body-scanning/id1467153183) to see the instructions we give our users. Without following the guidance, the quality of the scans might degrade.
 
 ## Contents
 
@@ -302,10 +306,10 @@ Connection: Keep-Alive
 Empty, 204
 ```
 
-## Important
+## Demo app
 
-You can see tutorials for users in the SDK demo app. Steps described in those tutorials are quite important. Your users should follow our recommendations for scanning. The quality of the scans might degrade otherwise. You can use our tutorials or create your own, but it's important for recommendations and steps to be the same.
+Please see `DemoApp` directory for a complete example of the app using the SDK.
 
-## Conclusion
+## Help and feedback
 
-If you have more questions please review the demo app. It's a gold standard, which we implemented in our in3D app. If after that you have more questions then please get in touch with us to solve your problems.
+If you have any questions regarding the SDK, feel free to get in touch with us at `sdk@in3d.io`. 
