@@ -29,8 +29,8 @@ class FaceViewModel: BaseCameraViewModel {
     private let disposeBag = DisposeBag()
     
     // MARK: - Init
-    override init(recorder: Recorder, coordinator: ScannerCoordination) {
-        super.init(recorder: recorder, coordinator: coordinator)
+    override init(recorder: Recorder, coordinator: ScannerCoordination, scanService: ScanService) {
+        super.init(recorder: recorder, coordinator: coordinator, scanService: scanService)
         
         angleDetector.rx.state.subscribe(onNext: { [unowned self] state in
             guard self.state != .scanning else {

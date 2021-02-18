@@ -117,7 +117,9 @@ class ScannerCoordinator: NSObject, ScannerCoordination {
         }
         
         let recorder = ScanRecorder(settings: settings, sequence: headSequence, height: currentHeight)
-        let vm = FaceViewModel(recorder: recorder, coordinator: self)
+        let vm = FaceViewModel(recorder: recorder,
+                               coordinator: self,
+                               scanService: container.scanService)
         let vc = FaceCameraViewController(viewModel: vm)
         recorder.previewView = vc.previewView
         
@@ -142,6 +144,7 @@ class ScannerCoordinator: NSObject, ScannerCoordination {
         
         let recorder = ScanRecorder(settings: settings, sequence: recording.bodySequence, height: currentHeight)
         let vm = TapCameraViewModel(recorder: recorder,
+                                    scanService: container.scanService,
                                     coordinator: self,
                                     voiceHints: AudioPlayer())
         let vc = BaseCameraViewController(viewModel: vm)

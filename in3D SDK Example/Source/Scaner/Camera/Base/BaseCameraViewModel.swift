@@ -23,9 +23,9 @@ class BaseCameraViewModel: RecorderDelegate {
     // MARK: - Init
     init(recorder: Recorder, coordinator: ScannerCoordination, scanService: ScanService) {
         self.recorder = recorder
-        self.recorder.delegate = self
         self.coordinator = coordinator
         self.scanService = scanService
+        self.recorder.delegate = self
     }
     
     func prepare(with imageFilter: ImageFilter?, and sensorFilter: SensorFilter?) {

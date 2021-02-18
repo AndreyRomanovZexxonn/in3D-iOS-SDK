@@ -7,7 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6724113B25DDB51B00D1CC77 /* I3DRecorder.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6724113A25DDB51B00D1CC77 /* I3DRecorder.xcframework */; };
+		67966D4125DEF0CB007DD400 /* URLRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67966D3F25DEF0CB007DD400 /* URLRequest.swift */; };
+		67966D4725DEF4B9007DD400 /* I3DRecorder.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6724113A25DDB51B00D1CC77 /* I3DRecorder.xcframework */; };
+		67966D4825DEF4B9007DD400 /* I3DRecorder.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6724113A25DDB51B00D1CC77 /* I3DRecorder.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		CFA89AA3FB0D1083425678B1 /* Pods_in3D_SDK_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 372C4F19AD8FEA60EDC22C37 /* Pods_in3D_SDK_Example.framework */; };
 		F51A2FB5257134BF000FE4B7 /* BodyTutorialVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = F51A2F66257134BF000FE4B7 /* BodyTutorialVM.swift */; };
 		F51A2FB6257134BF000FE4B7 /* HeadTutorialVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = F51A2F67257134BF000FE4B7 /* HeadTutorialVM.swift */; };
@@ -110,6 +112,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				67966D4825DEF4B9007DD400 /* I3DRecorder.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -120,6 +123,7 @@
 		372C4F19AD8FEA60EDC22C37 /* Pods_in3D_SDK_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_in3D_SDK_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		66CCA5EF6B45B6B92F8FA257 /* Pods-in3D SDK Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-in3D SDK Example.release.xcconfig"; path = "Target Support Files/Pods-in3D SDK Example/Pods-in3D SDK Example.release.xcconfig"; sourceTree = "<group>"; };
 		6724113A25DDB51B00D1CC77 /* I3DRecorder.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = I3DRecorder.xcframework; path = ../I3DRecorder.xcframework; sourceTree = SOURCE_ROOT; };
+		67966D3F25DEF0CB007DD400 /* URLRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLRequest.swift; sourceTree = "<group>"; };
 		EB5DC743800ECFCCFE00931C /* Pods-in3D SDK Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-in3D SDK Example.debug.xcconfig"; path = "Target Support Files/Pods-in3D SDK Example/Pods-in3D SDK Example.debug.xcconfig"; sourceTree = "<group>"; };
 		F51A2F66257134BF000FE4B7 /* BodyTutorialVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BodyTutorialVM.swift; sourceTree = "<group>"; };
 		F51A2F67257134BF000FE4B7 /* HeadTutorialVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeadTutorialVM.swift; sourceTree = "<group>"; };
@@ -222,7 +226,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6724113B25DDB51B00D1CC77 /* I3DRecorder.xcframework in Frameworks */,
+				67966D4725DEF4B9007DD400 /* I3DRecorder.xcframework in Frameworks */,
 				CFA89AA3FB0D1083425678B1 /* Pods_in3D_SDK_Example.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -567,6 +571,7 @@
 		F56ED5832575974F00A0DBD9 /* Foundation */ = {
 			isa = PBXGroup;
 			children = (
+				67966D3F25DEF0CB007DD400 /* URLRequest.swift */,
 				F56ED5842575975E00A0DBD9 /* Data.swift */,
 			);
 			path = Foundation;
@@ -1049,6 +1054,7 @@
 				F534730525724BFA0055DD43 /* UIViewController.swift in Sources */,
 				F5F1AB28257041BE00DE26DD /* BlurView.swift in Sources */,
 				F51A2FB7257134BF000FE4B7 /* TutorialViewContract.swift in Sources */,
+				67966D4125DEF0CB007DD400 /* URLRequest.swift in Sources */,
 				F5F1AB13257041BE00DE26DD /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

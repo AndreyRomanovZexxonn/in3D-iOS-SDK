@@ -18,7 +18,7 @@ class ScanerUploadViewModel: UploadViewModel {
     
     // MARK: - Private properties
     private weak var coordinator: ScannerCoordination?
-    private let scanService: ScanService
+    private var scanService: ScanService
     private let recording: ScanRecording
     private let disposeBag = DisposeBag()
     
@@ -33,6 +33,7 @@ class ScanerUploadViewModel: UploadViewModel {
     
     // MARK: - UploadViewModel
     func ready() {
+        scanService.delegate = self
         scanService.upload(recording: recording.id, progress: { (progress, totalSize) in
             self.view?.upload(progress: progress, totalSize: totalSize)
         }, completion: { [unowned self] scan, error in
@@ -57,8 +58,72 @@ class ScanerUploadViewModel: UploadViewModel {
 extension ScanerUploadViewModel: ScanServiceDelegate {
     
     func createScan(for recording: ScanRecording, completion: @escaping (String?) -> ()) {
-        // Read https://github.com/in3D-io/in3D-iOS-SDK
-        fatalError("You should implement this method in order to upload ScanRecroding.")
+        /// DO NOT DO THIS. THIS IS NOT A PRODUCTION SOLUTION, BUT A DEMONSTRATION.
+        /// THIS REQUEST SHOULD BE MADE FROM YOUR SERVER AND THE TOKEN SHOULD ALSO BE STORED ON THE SERVER
+        
+        let token = "<YOUR_TOKEN>"
+        
+        if token == "<YOUR_TOKEN>" {
+            fatalError()
+        }
+        
+        let header = ["Authorization": "Bearer \(token)"]
+        let body = ["callback_url": "", "config_name": "", "vendor_id": ""]
+        
+        let request: URLRequest
+        do {
+            request = try URLRequest.createRequest(method: .post,
+                                                   url: URL(string: "https://app.gsize.io/v2/scans/init")!,
+                                                   parameters: nil,
+                                                   header: header,
+                                                   body: body,
+                                                   encoding: .json)
+        } catch {
+            return
+        }
+        
+        let session = URLSession.shared
+        let task = session.dataTask(with: request) { (data, response, error) in
+            guard let response = response as? HTTPURLResponse else {
+                completion(nil)
+                return
+            }
+            
+            #if DEBUG
+            print(response)
+            #endif
+            
+            guard let data = data else {
+                return
+            }
+            
+            if response.statusCode / 200 == 1 {
+                do {
+                    let result = try JSONDecoder().decode(Scan.self, from: data)
+                    completion(result.id)
+                    return
+                } catch {
+                    #if DEBUG
+                    print(error)
+                    #endif
+                    completion(nil)
+                }
+            } else {
+                do {
+                    let result = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
+                    #if DEBUG
+                    print(result)
+                    #endif
+                } catch {
+                    #if DEBUG
+                    print(error)
+                    #endif
+                    completion(nil)
+                }
+            }
+        }
+        
+        task.resume()
     }
     
 }

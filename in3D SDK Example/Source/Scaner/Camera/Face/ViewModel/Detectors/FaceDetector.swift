@@ -53,10 +53,13 @@ class FaceDetector {
                                                         orientation: exifOrientation,
                                                         options: [VNImageOption.cameraIntrinsics: instrinsic])
         
-        do {
-            try imageRequestHandler.perform([faceDetectionRequest])
-        } catch let error as NSError {
-            NSLog("Failed to perform FaceRectangleRequest: %@", error)
+        
+        DispatchQueue.global(qos: .userInteractive).async { [unowned self] in
+            do {
+                try imageRequestHandler.perform([self.faceDetectionRequest])
+            } catch let error as NSError {
+                NSLog("Failed to perform FaceRectangleRequest: %@", error)
+            }
         }
     }
     
@@ -87,12 +90,11 @@ class FaceDetector {
 extension FaceDetector: ImageFilter {
     
     var fps: Int {
-        return 5
+        return 2
     }
     
     func process(rgb: CVPixelBuffer, depth: CVPixelBuffer, attachments: Attachments) {
         if shouldDetect {
-            print("Detect \(attachments.timestamp)")
             detectFace(in: rgb, with: attachments.intrinsic, and: depth)
         }
     }
