@@ -187,7 +187,7 @@ Accept-Encoding: gzip, deflate
 Connection: Keep-Alive
 
 {
-		vendor_id: string,
+    vendor_id: string,
     config_name: string,
     callback_url: string
 }
@@ -196,7 +196,7 @@ Connection: Keep-Alive
 
 Response JSON:
 {
-		id: string,
+    id: string,
     vendor_id: string,
     status: string,
     eta_minutes: number,
@@ -225,7 +225,7 @@ Connection: Keep-Alive
 
 Response JSON:
 {
-		id: string,
+    id: string,
     vendor_id: string,
     status: string,
     eta_minutes: number,
@@ -254,7 +254,7 @@ Connection: Keep-Alive
 
 Response JSON:
 [{
-		id: string,
+    id: string,
     vendor_id: string,
     status: string,
     eta_minutes: number,
@@ -283,7 +283,7 @@ Connection: Keep-Alive
 
 Response JSON:
 {
-		url: string,
+    url: string,
     ttl_sec: number,
     status: string
 }
