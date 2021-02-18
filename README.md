@@ -308,7 +308,7 @@ Empty, 204
 
 ## Demo app
 
-Please see `DemoApp` directory for a complete example of the app using the SDK.
+Please see `demoApp` directory for a complete example of the app using the SDK.
 
 ## Help and feedback
 
