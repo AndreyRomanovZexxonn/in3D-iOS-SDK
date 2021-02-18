@@ -10,12 +10,12 @@ The quality of the resulting scan heavily depends on whether the user follows th
 
 ## Contents
 
-1. Scanning pipeline
-2. Recording
-3. Upload
-4. Server
-5. Important
-6. Conclusion
+1. [Scanning pipeline](#scanning-pipeline)
+2. [Recording](#recording)
+3. [Upload](#upload)
+4. [Server](#server)
+5. [Demo App](#demo-app)
+6. [Help and feedback](#help-and-feedback)
 
 ## Scanning pipeline
 
@@ -33,7 +33,7 @@ The recording result is an object conforming to `ScanRecording` protocol:
 public protocol ScanRecording {
     
     var id: String { get }
-		var status: ScanRecordingStatus { get }
+    var status: ScanRecordingStatus { get }
     var baseURL: URL { get }
     var archiveURL: URL { get }
     var headSequence: ScanSequence { get }
@@ -64,7 +64,7 @@ public protocol ScanSequence {
     var timestamps: URL { get }
     var calibrationInfo: URL { get }
     var versionInfo: URL { get }
-		var all: [URL] { get }
+    var all: [URL] { get }
     
 }
 ```
@@ -78,11 +78,11 @@ Now let's discover how `headSequence` and `bodySequence` record. The central ele
 ```swift
 public protocol Recorder: class {
     
-	  var delegate: RecorderDelegate? { get set}
-	  var previewView: MTKView? { get set }
+    var delegate: RecorderDelegate? { get set}
+    var previewView: MTKView? { get set }
     func prepareForRecord(imageFilter: ImageFilter?, 
-													sensorFilter: SensorFilter?, 
-													completion: @escaping ((Error?) -> ()))
+                          sensorFilter: SensorFilter?, 
+			  completion: @escaping ((Error?) -> ()))
     func startRecord()
     func cancelRecord(completion: @escaping (() -> ()))
     func stopRecord(completion: @escaping ((ScanSequence?, Error?) -> ()))
@@ -94,13 +94,13 @@ Next steps describe how to set up `Recorder` and use it:
 
 - After initialization you need to set a delegate property. Delegate receives the recorder's state updates.
 
-    ```swift
-    public protocol RecorderDelegate: class {
-        
-        func recorder(changed state: RecordState)
-          
-    }
-    ```
+```swift
+public protocol RecorderDelegate: class {
+
+    func recorder(changed state: RecordState)
+
+}
+```
 
 - Then you need set a `Recorder`'s `previewView`, otherwise SDK will crash on a next step.
 - Before recording you need to call `prepareForRecord(imageFilters:sensorFilters:completion:)`. It setups connection with camera and prepares data storers. You can also set filters for image and sensor data. The result of the method result comes in completion closure.
@@ -117,13 +117,13 @@ You should use `ScanService` to upload your `ScanRecording`.
 public protocol ScanService {
 
     var delegate: ScanServiceDelegate? { get set } 
-		var notLoadedRecordings: [ScanRecording] { get }   
+    var notLoadedRecordings: [ScanRecording] { get }   
     func recorded(recording: ScanRecording) throws
-    func upload(recording: String,
+    func upload(recording: String, 
                 progress: @escaping (_ fractionCompleted: Double,_ totalSize: Int64) -> (),
-                completion: @escaping (_ scan: Scan?, _ error: Error?) -> ())
-    func launchScanProcessing(with scanID: String, 
-															completion: @escaping (_ scan: Scan?, _ error: Error?) -> ())
+		completion: @escaping (_ scan: Scan?, _ error: Error?) -> ())
+    func launchScanProcessing(with scanID: String,
+                              completion: @escaping (_ scan: Scan?, _ error: Error?) -> ())
     func newRecording(withHead: Bool) -> ScanRecording
     func delete(recording: String) throws
     func isLocalScan(with id: String) -> Bool
@@ -141,12 +141,12 @@ Here how you use it:
 public protocol ScanServiceDelegate: class {
     
     func createScan(for recording: ScanRecording, 
-										completion: @escaping (String?) -> ())
+                    completion: @escaping (String?) -> ())
     
 }
 ```
 
- You should return `scan_id` in completion closure. More about that [here]().
+ You should return `scan_id` in completion closure. More about that [here](#scanservicedelegate).
 
 - Call `upload(recording:progress:completion:)` method in order to upload successful recording.
 
@@ -156,7 +156,7 @@ This protocol contains only one method: `createScan(for:compeltion)`. This metho
 
 ![images/image_(1).png](images/image_(1).png)
 
-The "Vendor" here means your company. `createScan(for:compeltion)` method should make `/create_scan` request (you can name it whatever you want) which will make `/v2/scans/init` request to our server. You can read more about our server requests here.
+The "Vendor" here means your company. `createScan(for:compeltion)` method should make `/create_scan` request (you can name it whatever you want) which will make `/v2/scans/init` request to our server. You can read more about our server requests [here](#server).
 
 ## Server
 
@@ -308,7 +308,7 @@ Empty, 204
 
 ## Demo app
 
-Please see `demoApp` directory for a complete example of the app using the SDK.
+Please see [demoApp](../master/in3D%20SDK%20Example) directory for a complete example of the app using the SDK.
 
 ## Help and feedback
 
