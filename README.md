@@ -166,15 +166,15 @@ Your server should be an intermediary between in3D SDK and in3D Scanner API. All
 
 Now let's talk about our API methods.
 
-### Scanner API
+## Scanner API
 
-1. [Init scan]()
-2. [Get scan]()
-3. [Scans list]()
-4. [Get model]()
-5. [Delete scan]()
+1. [Init scan](#init-scan)
+2. [Get scan](#get-scan)
+3. [Scans list](#scans-list)
+4. [Resulting mesh](#resulting-mesh)
+5. [Delete scan](#delete-scan)
 
-`/scans/init`
+### Init scan
 
 ```
 POST /scans/init
@@ -188,7 +188,6 @@ Connection: Keep-Alive
 
 {
     vendor_id: string,
-    config_name: string,
     callback_url: string
 }
 
@@ -209,7 +208,7 @@ Response JSON:
 }
 ```
 
-`/v2/scans/get/{scan_id}`
+### Get scan
 
 ```
 POST /v2/scans/get/{scan_id}
@@ -238,7 +237,7 @@ Response JSON:
 }
 ```
 
-`/v2/scans/list`
+### Scans list
 
 ```
 POST /v2/scans/list
@@ -267,7 +266,7 @@ Response JSON:
 }]
 ```
 
-`/v2/scans/model/{scan_id}`
+### Resulting mesh
 
 ```
 POST /v2/scans/model/{scan_id}
@@ -289,7 +288,7 @@ Response JSON:
 }
 ```
 
-`/v2/scans/delete/{scan_id}`
+### Delete scan
 
 ```
 POST /v2/scans/delete/{scan_id}
