@@ -103,7 +103,7 @@ public protocol RecorderDelegate: class {
 ```
 
 - Then you need set a `Recorder`'s `previewView`, otherwise SDK will crash on a next step.
-- Before recording you need to call `prepareForRecord(imageFilters:sensorFilters:completion:)`. It setups connection with camera and prepares data storers. You can also set filters for image and sensor data. The result of the method result comes in completion closure.
+- Before recording you need to call `prepareForRecord(imageFilters:sensorFilters:completion:)`. It setups connection with camera and prepares data storers. You can also set filters for image and sensor data. The result of the method result comes in completion closure. This method also clears all the previously recorded data of the ScanSequence. 
 - To start recording you need to call `startRecord()`.
 - To cancel recording you need to call `cancelRecord(completion:)`. This method stops recording and removes all recorded data.
 - To finish recording you need to call `stopRecord(completion:)`. This method finishes data dumping. Closure called upon completion.

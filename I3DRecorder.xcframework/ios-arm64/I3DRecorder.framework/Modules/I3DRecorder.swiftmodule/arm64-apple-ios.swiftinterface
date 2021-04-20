@@ -79,7 +79,7 @@ public struct Scan : Swift.Codable {
   public let id: Swift.String
   public let vendorId: Swift.String
   public let status: I3DRecorder.ScanStatus
-  public let etaMinutes: Swift.Int?
+  public let etaMinutes: Swift.Double?
   public let configName: Swift.String?
   public let createdAt: Foundation.Date?
   public let startedAt: Foundation.Date?
