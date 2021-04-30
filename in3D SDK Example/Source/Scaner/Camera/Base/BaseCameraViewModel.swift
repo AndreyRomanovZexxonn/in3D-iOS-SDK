@@ -17,11 +17,13 @@ class BaseCameraViewModel: RecorderDelegate {
     weak var coordinator: ScannerCoordination?
     weak var view: CameraView?
     let recorder: Recorder
+    let settings: RecorderSettings
     var state = I3DRecorder.RecordState.ready
     let scanService: ScanService
 
     // MARK: - Init
-    init(recorder: Recorder, coordinator: ScannerCoordination, scanService: ScanService) {
+    init(recorder: Recorder, settings: RecorderSettings, coordinator: ScannerCoordination, scanService: ScanService) {
+        self.settings = settings
         self.recorder = recorder
         self.coordinator = coordinator
         self.scanService = scanService
@@ -29,7 +31,7 @@ class BaseCameraViewModel: RecorderDelegate {
     }
     
     func prepare(with imageFilter: ImageFilter?, and sensorFilter: SensorFilter?) {
-        recorder.prepareForRecord(imageFilter: imageFilter, sensorFilter: sensorFilter) { [unowned self] error in
+        recorder.prepareForRecord(with: self.settings, imageFilter: imageFilter, sensorFilter: sensorFilter) { [unowned self] error in
             if let error = error as? I3DRecordInitError {
                 switch error {
                 case .cameraSetupError:

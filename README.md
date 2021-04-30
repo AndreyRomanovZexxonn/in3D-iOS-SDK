@@ -49,31 +49,21 @@ Parameters:
 - `baseURL` - URL of the directory which will contain scanned data
 - `archiveURL` - resulting archive URL
 
-`headSequence` and `bodySequence` properties are objects conforming to the `ScanSequence`  protocol. `ScanSequence` contains URL for recorded data.
+`headSequence` and `bodySequence` properties are objects conforming to the `ScanSequence`  protocol. `ScanSequence` contains information about sequence type and some of the recorder data.
 
 ```swift
 public protocol ScanSequence {
     
+    var type: ScanSequenceType { get }
     var rgb: URL { get }
-    var depth: URL { get }
     var firstFrame: URL { get }
-    var height: URL { get }
-    var accelerometer: URL { get }
-    var gyroscope: URL  { get }
-    var thermal: URL  { get }
-    var timestamps: URL { get }
-    var calibrationInfo: URL { get }
-    var versionInfo: URL { get }
-    var all: [URL] { get }
     
 }
 ```
 
-All the above URLs are destinations for data which will be recorded using `Recorder`.
-
 ## Recording
 
-Now let's discover how `headSequence` and `bodySequence` record. The central element of the SDK is a `Recorder`. It records RGB and depth data from the TrueDepth camera.
+Now let's discover how `headSequence` and `bodySequence` recorded. The central element of the SDK is a `Recorder`. It records RGB and depth data(if available) from the specified camera.
 
 ```swift
 public protocol Recorder: class {
@@ -86,6 +76,8 @@ public protocol Recorder: class {
     func startRecord()
     func cancelRecord(completion: @escaping (() -> ()))
     func stopRecord(completion: @escaping ((ScanSequence?, Error?) -> ()))
+    func canUse(camera type: CameraType, for sequenceType: ScanSequenceType) -> Bool
+    func availableCameras(for sequenceType: ScanSequenceType) -> [CameraType]
 
 }
 ```
@@ -103,7 +95,9 @@ public protocol RecorderDelegate: class {
 ```
 
 - Then you need set a `Recorder`'s `previewView`, otherwise SDK will crash on a next step.
-- Before recording you need to call `prepareForRecord(imageFilters:sensorFilters:completion:)`. It setups connection with camera and prepares data storers. You can also set filters for image and sensor data. The result of the method result comes in completion closure. This method also clears all the previously recorded data of the ScanSequence. 
+- Now create instance of `I3DRecorderSettings`. Currently you can specify one of the 4 different camera types: `.lidar`, `.trueDepth`, `.rgbFront`, `.rgbBack`.
+- You need to check if specified camera type is supported by device using `canUse(camera:for)`. Remember, that `headSequence` can only be recorde using `TrueDepth` camera.
+- Before recording you need to call `prepareForRecord(settings:imageFilters:sensorFilters:completion:)`. It setups connection with camera and prepares data storers. You can also set filters for image and sensor data. The result of the method result comes in completion closure. This method also clears all the previously recorded data of the ScanSequence. 
 - To start recording you need to call `startRecord()`.
 - To cancel recording you need to call `cancelRecord(completion:)`. This method stops recording and removes all recorded data.
 - To finish recording you need to call `stopRecord(completion:)`. This method finishes data dumping. Closure called upon completion.

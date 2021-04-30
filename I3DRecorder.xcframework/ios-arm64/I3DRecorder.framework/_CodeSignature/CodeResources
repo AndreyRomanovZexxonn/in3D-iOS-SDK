@@ -22,27 +22,27 @@
 		</data>
 		<key>Modules/I3DRecorder.swiftmodule/arm64-apple-ios.swiftdoc</key>
 		<data>
-		t+3PYMQDbT26LngMpvs+WEc5PtA=
+		rRS5cI7VT66nHR1R9+Dv/f2WLao=
 		</data>
 		<key>Modules/I3DRecorder.swiftmodule/arm64-apple-ios.swiftinterface</key>
 		<data>
-		SdrPvv+Lc4Ip10xzwtuvb4fkmiY=
+		3gJAxxnmJDir1QBDeNsQ2TrqMUM=
 		</data>
 		<key>Modules/I3DRecorder.swiftmodule/arm64-apple-ios.swiftmodule</key>
 		<data>
-		V9P3w4gRBp6DtsNBwr7MBmwxuUs=
+		j7YIvvjWAFW3NAu5p53Y2ePUUv0=
 		</data>
 		<key>Modules/I3DRecorder.swiftmodule/arm64.swiftdoc</key>
 		<data>
-		t+3PYMQDbT26LngMpvs+WEc5PtA=
+		rRS5cI7VT66nHR1R9+Dv/f2WLao=
 		</data>
 		<key>Modules/I3DRecorder.swiftmodule/arm64.swiftinterface</key>
 		<data>
-		SdrPvv+Lc4Ip10xzwtuvb4fkmiY=
+		3gJAxxnmJDir1QBDeNsQ2TrqMUM=
 		</data>
 		<key>Modules/I3DRecorder.swiftmodule/arm64.swiftmodule</key>
 		<data>
-		V9P3w4gRBp6DtsNBwr7MBmwxuUs=
+		j7YIvvjWAFW3NAu5p53Y2ePUUv0=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -80,42 +80,42 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			gOK9z67lCVckk9Y36TztejU+HPRdLK0IoHI3aARUGcE=
+			UFIOrDNI967cJ9jAlBWxXcZJqRDxDk98rcc3H9e80Wc=
 			</data>
 		</dict>
 		<key>Modules/I3DRecorder.swiftmodule/arm64-apple-ios.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			lLACfjehSBqaug3LJHNyzpnkhmjUqBXRUUPaUhpNxic=
+			YhmiGc4EEuHLhAv0LOnePYXbsxFsd2OXfWdB8a/gDjg=
 			</data>
 		</dict>
 		<key>Modules/I3DRecorder.swiftmodule/arm64-apple-ios.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			MYs0dk+0Qx+mbIaPlo+sXTBdIT+WCQvLLReIf6MBmSQ=
+			29uzgOaKSIZWQ8zjJKPgawmwRxlEmR+hM89Fy4+4o0Y=
 			</data>
 		</dict>
 		<key>Modules/I3DRecorder.swiftmodule/arm64.swiftdoc</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			gOK9z67lCVckk9Y36TztejU+HPRdLK0IoHI3aARUGcE=
+			UFIOrDNI967cJ9jAlBWxXcZJqRDxDk98rcc3H9e80Wc=
 			</data>
 		</dict>
 		<key>Modules/I3DRecorder.swiftmodule/arm64.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			lLACfjehSBqaug3LJHNyzpnkhmjUqBXRUUPaUhpNxic=
+			YhmiGc4EEuHLhAv0LOnePYXbsxFsd2OXfWdB8a/gDjg=
 			</data>
 		</dict>
 		<key>Modules/I3DRecorder.swiftmodule/arm64.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			MYs0dk+0Qx+mbIaPlo+sXTBdIT+WCQvLLReIf6MBmSQ=
+			29uzgOaKSIZWQ8zjJKPgawmwRxlEmR+hM89Fy4+4o0Y=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>

@@ -43,38 +43,6 @@ public struct GyroscopeData : Swift.Codable {
   public init(from decoder: Swift.Decoder) throws
   public func encode(to encoder: Swift.Encoder) throws
 }
-public enum CameraDataType {
-  case rgb
-  case depth
-  public static func == (a: I3DRecorder.CameraDataType, b: I3DRecorder.CameraDataType) -> Swift.Bool
-  public var hashValue: Swift.Int {
-    get
-  }
-  public func hash(into hasher: inout Swift.Hasher)
-}
-public enum CameraExposureMode {
-  case locked
-  case auto((value: Swift.Int64, timescale: Swift.Int32))
-  case custom((value: Swift.Int64, timescale: Swift.Int32, iso: Swift.Float))
-}
-public enum CameraWhiteBalanceMode {
-  case locked
-  case auto
-  public static func == (a: I3DRecorder.CameraWhiteBalanceMode, b: I3DRecorder.CameraWhiteBalanceMode) -> Swift.Bool
-  public var hashValue: Swift.Int {
-    get
-  }
-  public func hash(into hasher: inout Swift.Hasher)
-}
-public enum CameraFocusMode {
-  case locked
-  case auto
-  public static func == (a: I3DRecorder.CameraFocusMode, b: I3DRecorder.CameraFocusMode) -> Swift.Bool
-  public var hashValue: Swift.Int {
-    get
-  }
-  public func hash(into hasher: inout Swift.Hasher)
-}
 public struct Scan : Swift.Codable {
   public let id: Swift.String
   public let vendorId: Swift.String
@@ -145,14 +113,23 @@ extension CVBuffer {
   public func copy() -> CoreVideo.CVPixelBuffer
   public func convert(pixelBuffer: CoreVideo.CVPixelBuffer, to outputPixelBuffer: CoreVideo.CVPixelBuffer)
 }
+public enum CameraType {
+  case lidar
+  case trueDepth
+  case rgbBack
+  case rgbFront
+  public static func == (a: I3DRecorder.CameraType, b: I3DRecorder.CameraType) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+  public func hash(into hasher: inout Swift.Hasher)
+}
 public protocol RecorderSettings {
-  var exposureMode: I3DRecorder.CameraExposureMode { get }
-  var fps: Swift.Int? { get }
+  var cameraType: I3DRecorder.CameraType { get }
 }
 public struct I3DRecorderSettings : I3DRecorder.RecorderSettings {
-  public let exposureMode: I3DRecorder.CameraExposureMode
-  public let fps: Swift.Int?
-  public init(exposureMode: I3DRecorder.CameraExposureMode, fps: Swift.Int?)
+  public let cameraType: I3DRecorder.CameraType
+  public init(cameraType: I3DRecorder.CameraType)
 }
 public struct ThermalData : Swift.Codable {
   public init(from decoder: Swift.Decoder) throws
@@ -166,23 +143,19 @@ public struct AccelerometerData : Swift.Codable {
   public init(from decoder: Swift.Decoder) throws
   public func encode(to encoder: Swift.Encoder) throws
 }
-public protocol ScanSequence {
-  var rgb: Foundation.URL { get }
-  var depth: Foundation.URL { get }
-  var firstFrame: Foundation.URL { get }
-  var height: Foundation.URL { get }
-  var accelerometer: Foundation.URL { get }
-  var gyroscope: Foundation.URL { get }
-  var thermal: Foundation.URL { get }
-  var timestamps: Foundation.URL { get }
-  var calibrationInfo: Foundation.URL { get }
-  var versionInfo: Foundation.URL { get }
-  var all: [Foundation.URL] { get }
-  var baseURL: Foundation.URL { get }
+public enum ScanSequenceType : Swift.String {
+  case body
+  case head
+  public typealias RawValue = Swift.String
+  public init?(rawValue: Swift.String)
+  public var rawValue: Swift.String {
+    get
+  }
 }
-public enum RecordResult {
-  case success(I3DRecorder.ScanSequence)
-  case error(Swift.Error)
+public protocol ScanSequence {
+  var type: I3DRecorder.ScanSequenceType { get }
+  var rgb: Foundation.URL { get }
+  var firstFrame: Foundation.URL { get }
 }
 public enum I3DRecordInitError : Swift.Error {
   case cameraSetupError
@@ -229,9 +202,11 @@ public protocol SensorFilter {
   func process(thermal data: I3DRecorder.ThermalData)
 }
 public protocol Recorder : AnyObject {
+  func canUse(camera type: I3DRecorder.CameraType, for sequenceType: I3DRecorder.ScanSequenceType) -> Swift.Bool
+  func availableCameras(for sequenceType: I3DRecorder.ScanSequenceType) -> [I3DRecorder.CameraType]
   var delegate: I3DRecorder.RecorderDelegate? { get set }
   var previewView: MetalKit.MTKView? { get set }
-  func prepareForRecord(imageFilter: I3DRecorder.ImageFilter?, sensorFilter: I3DRecorder.SensorFilter?, completion: @escaping ((Swift.Error?) -> ()))
+  func prepareForRecord(with settings: I3DRecorder.RecorderSettings, imageFilter: I3DRecorder.ImageFilter?, sensorFilter: I3DRecorder.SensorFilter?, completion: @escaping ((Swift.Error?) -> ()))
   func startRecord()
   func cancelRecord(completion: @escaping (() -> ()))
   func stopRecord(completion: @escaping ((I3DRecorder.ScanSequence?, Swift.Error?) -> ()))
@@ -239,13 +214,14 @@ public protocol Recorder : AnyObject {
 @objc public class ScanRecorder : ObjectiveC.NSObject {
   weak public var delegate: I3DRecorder.RecorderDelegate?
   weak public var previewView: MetalKit.MTKView?
-  public init(settings: I3DRecorder.RecorderSettings, sequence: I3DRecorder.ScanSequence, height: Swift.Int)
   public init(sequence: I3DRecorder.ScanSequence, height: Swift.Int)
   @objc deinit
   @objc override dynamic public init()
 }
 extension ScanRecorder : I3DRecorder.Recorder {
-  public func prepareForRecord(imageFilter: I3DRecorder.ImageFilter?, sensorFilter: I3DRecorder.SensorFilter?, completion: @escaping ((Swift.Error?) -> ()))
+  public func canUse(camera type: I3DRecorder.CameraType, for sequenceType: I3DRecorder.ScanSequenceType) -> Swift.Bool
+  public func availableCameras(for sequenceType: I3DRecorder.ScanSequenceType) -> [I3DRecorder.CameraType]
+  public func prepareForRecord(with settings: I3DRecorder.RecorderSettings, imageFilter: I3DRecorder.ImageFilter?, sensorFilter: I3DRecorder.SensorFilter?, completion: @escaping ((Swift.Error?) -> ()))
   public func startRecord()
   public func cancelRecord(completion: @escaping (() -> ()))
   public func stopRecord(completion: @escaping ((I3DRecorder.ScanSequence?, Swift.Error?) -> ()))
@@ -256,15 +232,14 @@ public protocol RecorderDelegate : AnyObject {
 extension I3DRecorder.ScanRecordingStatus : Swift.Equatable {}
 extension I3DRecorder.ScanRecordingStatus : Swift.Hashable {}
 extension I3DRecorder.ScanRecordingStatus : Swift.RawRepresentable {}
-extension I3DRecorder.CameraDataType : Swift.Equatable {}
-extension I3DRecorder.CameraDataType : Swift.Hashable {}
-extension I3DRecorder.CameraWhiteBalanceMode : Swift.Equatable {}
-extension I3DRecorder.CameraWhiteBalanceMode : Swift.Hashable {}
-extension I3DRecorder.CameraFocusMode : Swift.Equatable {}
-extension I3DRecorder.CameraFocusMode : Swift.Hashable {}
 extension I3DRecorder.ScanStatus : Swift.Equatable {}
 extension I3DRecorder.ScanStatus : Swift.Hashable {}
 extension I3DRecorder.ScanStatus : Swift.RawRepresentable {}
+extension I3DRecorder.CameraType : Swift.Equatable {}
+extension I3DRecorder.CameraType : Swift.Hashable {}
+extension I3DRecorder.ScanSequenceType : Swift.Equatable {}
+extension I3DRecorder.ScanSequenceType : Swift.Hashable {}
+extension I3DRecorder.ScanSequenceType : Swift.RawRepresentable {}
 extension I3DRecorder.I3DRecordInitError : Swift.Equatable {}
 extension I3DRecorder.I3DRecordInitError : Swift.Hashable {}
 extension I3DRecorder.I3DRecordError : Swift.Equatable {}

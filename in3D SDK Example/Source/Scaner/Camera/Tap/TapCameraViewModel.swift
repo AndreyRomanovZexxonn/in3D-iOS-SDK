@@ -22,9 +22,9 @@ class TapCameraViewModel: BaseCameraViewModel {
     private let disposeBag = DisposeBag()
     private var shouldBlockBottom = false
     
-    init(recorder: Recorder, scanService: ScanService, coordinator: ScannerCoordination, voiceHints: VoiceHints) {
+    init(recorder: Recorder, settings: RecorderSettings, scanService: ScanService, coordinator: ScannerCoordination, voiceHints: VoiceHints) {
         self.voiceHints = voiceHints
-        super.init(recorder: recorder, coordinator: coordinator, scanService: scanService)
+        super.init(recorder: recorder, settings: settings, coordinator: coordinator, scanService: scanService)
         
         bottomFilter.rx.block.subscribe(onNext: { [unowned self] shouldBlock in
             self.shouldBlockBottom = shouldBlock

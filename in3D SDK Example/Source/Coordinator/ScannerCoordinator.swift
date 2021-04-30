@@ -52,8 +52,7 @@ class ScannerCoordinator: NSObject, ScannerCoordination {
         self.navigationController = navigationController
         self.container = container
         self.recording = container.scanService.newRecording(withHead: true)
-        self.settings = I3DRecorderSettings(exposureMode: .auto((value: Int64(1), timescale: Int32(100))),
-                                            fps: 10)
+        self.settings = I3DRecorderSettings(cameraType: .trueDepth)
         
         super.init()
         navigationController.delegate = self
@@ -116,8 +115,18 @@ class ScannerCoordinator: NSObject, ScannerCoordination {
             fatalError()
         }
         
-        let recorder = ScanRecorder(settings: settings, sequence: headSequence, height: currentHeight)
+        let recorder = ScanRecorder(sequence: headSequence, height: currentHeight)
+        
+        let settings: RecorderSettings
+        let cameraType = CameraType.trueDepth
+        if recorder.canUse(camera: cameraType, for: .body) {
+            settings = I3DRecorderSettings(cameraType: cameraType)
+        } else {
+            fatalError("You can only record head with trueDepth camera.")
+        }
+        
         let vm = FaceViewModel(recorder: recorder,
+                               settings: settings,
                                coordinator: self,
                                scanService: container.scanService)
         let vc = FaceCameraViewController(viewModel: vm)
@@ -131,19 +140,19 @@ class ScannerCoordinator: NSObject, ScannerCoordination {
         if let height = height {
             currentHeight = height
         }
-                
-        if currentVC is ReviewViewController {
-            do {
-                for item in recording.bodySequence.all {
-                    try FileManager.default.removeItem(at: item)
-                }
-            } catch {
-                print(error)
-            }
+        
+        let recorder = ScanRecorder(sequence: recording.bodySequence, height: currentHeight)
+        
+        let settings: RecorderSettings
+        let cameraType = CameraType.trueDepth
+        if recorder.canUse(camera: cameraType, for: .body) {
+            settings = I3DRecorderSettings(cameraType: cameraType)
+        } else {
+            settings = I3DRecorderSettings(cameraType: .rgbFront)
         }
         
-        let recorder = ScanRecorder(settings: settings, sequence: recording.bodySequence, height: currentHeight)
         let vm = TapCameraViewModel(recorder: recorder,
+                                    settings: settings,
                                     scanService: container.scanService,
                                     coordinator: self,
                                     voiceHints: AudioPlayer())
