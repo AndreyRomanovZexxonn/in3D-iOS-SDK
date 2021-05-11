@@ -171,7 +171,7 @@ Now let's talk about our API methods.
 ### Init scan
 
 ```
-POST /scans/init
+POST /v2/scans/init
 Host: www.app.gsize.io
 Authorization: Bearer <YOUR_TOKEN>
 Content-Type: application/json
