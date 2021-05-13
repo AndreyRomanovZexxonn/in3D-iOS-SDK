@@ -229,6 +229,7 @@ Response JSON:
     callback_url: string,
     etag: string
 }
+status values = [ inited, upload_start, upload_done, calc_queued, calc_processing, calc_ok, calc_failure ]
 ```
 
 ### Scans list
